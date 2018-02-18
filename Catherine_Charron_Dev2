@@ -1,0 +1,25 @@
+#coding: utf-8
+import csv
+fichier = 'grants.csv'
+f1 = open(fichier)
+document = csv.reader(f1)
+n = 0
+
+#Puisque le fond est composé de trois subventions, il faut faire 3 recherche:
+
+editeurs = "Aide aux éditeurs"
+innovation = "Innovation commerciale"
+initiative = "Initiatives collectives"
+
+#Le fun commence. On veut imprimer chaque subvention (ligne) qui ont l'une de nos variables identifiées plus haut.
+
+for ligne in document:
+	
+	if any(editeurs in colonne for colonne in ligne) or any(innovation in colonne for colonne in ligne) or any(initiative in colonne for colonne in ligne):	
+		
+		#On veut maintenant connaître en quelle année ces subventions ont été allouées
+		date = ligne[13]
+		annee = date.split("-")
+
+		n += 1
+		print(n, annee[0], ligne)
